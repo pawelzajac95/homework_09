@@ -14,7 +14,7 @@ def input_error(func):
 def hello_command():
     return 'How can I help you?'
 
-
+@input_error
 def add_command(contacts, input_command):
     _, name, phone = input_command.split()
     if name not in contacts:
@@ -23,7 +23,7 @@ def add_command(contacts, input_command):
     else:
         return f'This name already exists.'
 
-
+@input_error
 def change_command(contacts, input_command):
     _, name, phone = input_command.split()
     if name.lower() in contacts:
@@ -32,7 +32,7 @@ def change_command(contacts, input_command):
     else:
         return 'Such a name does not exist.'
 
-
+@input_error
 def phone_command(contacts, input_command):
     _, name = input_command.split()
     if name.lower() in contacts:
@@ -40,19 +40,12 @@ def phone_command(contacts, input_command):
     else:
         return 'Such a name does not exist.'
 
-
+@input_error
 def show_all_command(contacts):
     if not contacts:
         return 'Contacts not found.'
     else:
         return "\n".join([f"{name}: {phone}" for name, phone in contacts.items()])
-
-
-hello_command = input_error(hello_command)
-add_command = input_error(add_command)
-change_command = input_error(change_command)
-phone_command = input_error(phone_command)
-show_all_command = input_error(show_all_command)
 
 
 def main():
